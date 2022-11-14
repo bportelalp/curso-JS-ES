@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+//every 
+
+//This prototype is provided by the Mozilla foundation and
+//is distributed under the MIT license.
+//http://www.ibiblio.org/pub/Linux/LICENSES/mit.license
+
+if (!Array.prototype.every)
+{
+  Array.prototype.every = function(fun /*, thisp*/)
+  {
+    var len = this.length;
+    if (typeof fun != "function")
+      throw new TypeError();
+
+    var thisp = arguments[1];
+    for (var i = 0; i < len; i++)
+    {
+      if (i in this &&
+          !fun.call(thisp, this[i], i, this))
+        return false;
+    }
+
+    return true;
+  };
+}
+
+//Aquí comienza el ejemplo
+function esPar(n)
+{
+  if ( n % 2 == 0 ) 
+    return true;
+   else
+    return false;
+}
+
+var numeros = [2 , 4, 6, 8, 10, 11];
+var res = numeros.every(esPar);
+alert(res); //false, el 11 es impar
+//Quitamos el último
+numeros.pop();
+res = numeros.every(esPar);
+alert(res); //true, ahora son todos pares
+
+</script>
+</html>
