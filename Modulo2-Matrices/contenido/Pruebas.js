@@ -150,7 +150,6 @@ var matriz8 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function esPar(n) {
     return (n % 2 ) == 0;
 }
-
 //var numerosPares = matriz8.filter(esPar);
 //alert(numerosPares);
 //alert(matriz8);
