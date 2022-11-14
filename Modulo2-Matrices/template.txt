@@ -1,4 +1,0 @@
-console.log('\n ---- Inicio programa ----');
-
-
-console.log('---- Fin programa ----\n ');
