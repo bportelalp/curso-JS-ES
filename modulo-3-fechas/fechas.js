@@ -35,3 +35,28 @@ const isDate = (date = new Date()) => date instanceof Date;
 console.log('Variable f1 es decha? ', isDate(f1));
 console.log('Variable f2 es decha? ', isDate(f2));
 console.log('Variable f3 es decha? ', isDate(f3));
+
+// que empiece los meses en 0, permite saber el numero de dias que tiene un mes
+function diasEnMes(month, year) {
+    var comodin = new Date(year, month + 1, 0)
+    return comodin.getDate();
+}
+
+console.log('Días en febrero de 2012', diasEnMes(1, 2012));
+
+
+console.log('\nFormatear fechas');
+// No hay demasiadas opciones para formatear, deberemos hacer funciones propias
+var fecha = new Date(2016, 11, 25);
+console.log('Formato original: ', fecha.toLocaleString());
+
+const getNameMonth = (date = new Date()) => {
+    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    return meses[date.getMonth()]
+}
+const dateToStringES = (date = new Date()) => {
+    return date.getDate() + ' de ' + (getNameMonth(date)) + ' de ' + date.getFullYear();
+}
+
+console.log('Formato ES:       ', dateToStringES(fecha));
+
