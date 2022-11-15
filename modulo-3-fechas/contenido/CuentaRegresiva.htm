@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cuenta regresiva</title>
+
+<link type="text/css" href="crono.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    //tiempo objetivo;
+    var dObjetivo = null;
+    var divreloj = null;    //caché del div para mejorar rendimiento
+    var idTimer = 0;    //Identificador del temporizador
+
+    function comenzarParar()
+    {
+        if (idTimer != 0) { //parar
+            //paramos el temporizador
+            clearInterval(idTimer);
+            idTimer = 0;
+            //cambiar texto del botón a "Parar"
+            document.getElementById("botonCrono").value = "Iniciar";
+            //Poner el contador a cero
+            pintarTiempo(0, 0);
+        }
+        else {  //arrancar
+            //Se averigua el tiempo seleccionado (son minutos)
+            var tDescuento = parseInt(document.getElementById("tiempo").value, 10);
+            dObjetivo = new Date();  //hora actual como referencia
+            dObjetivo.setMinutes(dObjetivo.getMinutes() + tDescuento);    //sumamos el número de minutos necesario: tiempo objetivo
+            //cambiar texto del botón a "Parar"
+            document.getElementById("botonCrono").value = "Parar";
+            //poner el tiempo inicial
+            pintarTiempo(tDescuento, 0);
+            //lanzar temporizador
+            idTimer = setInterval(tick, 900);
+        }
+    }
+
+    function tick() {
+        //Se calcula la diferencia entre la hora objetivo y la actual
+        var dif = (dObjetivo - new Date()) / 1000; //dividimos entre 1000 para obtener segundos
+        if (dif > 0) {
+            var minutos = Math.floor(dif / 60);
+            var segundos = Math.floor(dif % 60);
+            pintarTiempo(minutos, segundos);
+        }
+        else {
+            comenzarParar();    //Lo paramos si ya nos hemos pasado
+        }
+    }
+
+    function pintarTiempo(minutos, segundos)
+    {
+        if (divreloj == null) divreloj = document.getElementById("reloj");
+        if (minutos.toString().length == 1)
+            minutos = "0" + minutos;
+        if (segundos.toString().length == 1)
+            segundos = "0" + segundos;
+
+        divreloj.textContent = minutos + ":" + segundos;
+    }
+</script>
+</head>
+<body>
+<div class="marco">
+    <div id="reloj">00:00</div>
+    <select id="tiempo">
+        <option value="5">5 min</option>
+        <option value="10">10 min</option>
+        <option value="15">15 min</option>
+        <option value="20">20 min</option>
+        <option value="25">25 min</option>
+        <option value="30">30 min</option>
+    </select>
+    <input type="button" id="botonCrono" value="Iniciar" onclick="comenzarParar();" />
+</div>
+</body>
+</html>

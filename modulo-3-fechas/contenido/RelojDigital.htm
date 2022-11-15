@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reloj Digital</title>
+
+<script type="text/javascript">
+
+function mostrarHora() {
+  
+  //Asigno la fecha y hora actual
+    var h = new Date();
+
+    //Muestro la fecha actual en su zona
+    document.getElementById("fecha").textContent = h.toLocaleDateString();
+
+    //Descompongo el tiempo en sus partes
+    var horas = h.getHours().toString();
+    if (horas.length == 1) horas = "0" + horas;
+  
+    var mins = h.getMinutes().toString();
+    if (mins.length == 1) mins = "0" + mins;
+  
+    var segs = h.getSeconds().toString();
+    if (segs.length == 1) segs = "0" + segs;
+  
+    document.getElementById("reloj").textContent = horas + ":" + mins + ":" + segs;
+  
+    setTimeout("mostrarHora()", 1000);
+}
+
+
+</script>
+</head>
+<body onload="mostrarHora()">
+<div id="fecha" style="text-align:center;font-size:30pt;">
+</div>
+<div id="reloj" style="text-align:center;font-size:80pt; font-weight:bold; font-family:Courier New;">
+</div>
+
+</body>
+</html>
