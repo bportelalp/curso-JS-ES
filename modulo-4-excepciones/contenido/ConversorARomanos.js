@@ -7,11 +7,11 @@ function cRomano(n)
   var simb1, simb2, simb3;
   var sAux = "";
   //rotamos por las distintas cifras constituyentes
-  for (i=0; i<sn.Length; i++)
+  for (i=0; i<sn.length ; i++)
   {
 	//Se establecen los símbolos en el rango actual
 	//(millares, centenas, decenas o unidades)
-	switch (sn.length)
+	switch (sn.length - i)
 	{
 	case 4:	//millares
 		  simb1 = "M", simb2 = "V" + String.fromCharCode(772), simb3 = "X" + String.fromCharCode(772);
