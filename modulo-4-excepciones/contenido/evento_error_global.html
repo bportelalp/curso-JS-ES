@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test window.onerror</title>
+    <script>
+        window.addEventListener('error', function (ev){
+            console.log("Se ha producido un error: " + ev.message + " en la línea " + ev.lineno + " del archivo " + ev.filename);
+        })
+
+        var x = 0;
+        x.noExiste();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

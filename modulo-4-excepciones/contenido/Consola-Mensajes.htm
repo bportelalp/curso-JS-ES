@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Depuración #1</title>
+	<script type="text/javascript">
+		var usuarios = ["Jose", "Eva", "Pablo", "André", "Ainhoa"];
+
+		//Si el usuario está en la lista anterior le concedemos acceso
+		function comprobarAcceso(usuario)
+		{
+			var res = false;
+			console.info("Entrando en la función");
+			console.assert(usuario != "", "El usuario debe contener algún valor");
+			console.groupCollapsed(">>>MENSAJES DENTRO DEL BUCLE");
+		  for(var i = 0; i<usuarios.length; i++)
+		  {
+			//console.count("Vueltas del bucle");
+			console.log("Comprobando usuario:", usuarios[i]);
+			if (usuarios[i].toUpperCase() == usuario.toUpperCase())
+			{
+			  res = true;
+			  break;
+			}
+		  }
+		  console.groupEnd();
+		  return res;
+		}
+
+		var usuario = "eva";
+		console.log("Comprobando acceso de %s \n\tEl resultado es: %s \n%o", usuario, comprobarAcceso("eva"), document);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

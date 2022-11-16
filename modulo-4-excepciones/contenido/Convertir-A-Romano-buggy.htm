@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <header>
+    <title>Conversor a números romanos</title>
+
+    <script src="conversorARomanos.js"></script>
+    <script>
+    	function hacerConversion() {
+    		//Busco el valor introducido en el cuadro de texto de la izquierda
+    		var numero = parseInt(document.forms[0].txtArbe.value);
+
+    		//Convierto a romanos
+    		romano.innerHTML = cRomano(numero);
+    		document.forms[0].txtArabe.focus();
+    	}
+    </script>
+</header>
+
+<body>
+<form>
+<span style="text-align:center; font-size:12pt; color:#00f; font-weight:bold;">Número de 0 a 10.000:</span>
+    <input type="text" size="4" id="txtArabe" name="txtArabe" autocomplete="off" />
+    <input type="button" id="cmdConvertir" value="Convertir a Romano &gt;&gt;&gt;&gt;" onclick="hacerConversion();" />
+    <span id="romano" style="font-size:40pt; font-weight:bold;" />
+</form>
+<script>
+    //Calcula cuando se pulsa "enter" en el cuadro de texto
+    function calcularConEnter(ev) {
+        if(ev.key == 'enter') {
+            hacerConversion();
+            ev.preventDefault();
+        }
+    }
+
+    txtArabe.addEventListener('keydown', calcularConEnter);
+</script>
+</body>
+</html>
