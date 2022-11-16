@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejemplo de DOM</title>
+    <script type="text/javascript">
+
+        //SOLAMENTE LOS NODOS QUE SON ELEMENTOS HTML
+        function mostrarDOMApartirDe(elto)
+        {
+            //Metemos el nodo actual
+            var arbol = "<ul><li>" + elto.nodeName + "</li>";
+            //recorremos los nodos hijos llamando a esta misma función recursivamente
+            if (elto.children) {
+                for (var i = 0; i < elto.children.length; i++) {
+                    arbol += mostrarDOMApartirDe(elto.children[i]);
+                }
+            }
+            arbol += "</ul>";
+            //devolvemos el resultado final
+            return arbol;
+        }
+
+        function pintarDOM()
+        {
+            document.getElementById("dom").innerHTML = "<h2>DOM del documento actual:</h2>" + mostrarDOMApartirDe(document.documentElement);
+        }
+
+    </script>
+</head>
+<body onload="pintarDOM();">
+    <!-- Comentario HTML -->
+    <h1>Ejemplo de DOM</h1>
+    <ul>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+    </ul>
+    <div id="dom" style="font-size:small; border:1px dashed; background-color:rgb(250, 250, 250);"></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> </title>
+<style type="text/css">
+    .rojo {
+        color: red;
+    }
+    .verde {
+        color: green;
+    }
+</style>
+</head>
+<body>
+    <h1 class="rojo">Ejemplo de DOM</h1>
+    <ul id="lista">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+    </ul>
+    <a href="http://www.campusmvp.com" title="Visita la web de campusMVP">campusMVP</a>
+    <img src="http://www.campusmvp.com/Logo/logo.png" alt="Logo campusMVP" />
+
+<script type="text/javascript">
+    var img = document.getElementsByTagName("img")[0];
+    //por métodos de atributos 
+    alert(img.getAttribute("src"));
+    //por colección de atributos
+    alert(img.attributes["src"].value);
+    //por propiedad
+    alert(img.src);
+    //verificar si posee un atributo
+    alert(img.hasAttribute("alt")); //true
+    alert(img.hasAttribute("hspace")); //false
+
+    //mostrar todos los atributos de la imagen
+    var atribs = "";
+    for (var i = 0; i < img.attributes.length; i++)
+    {
+        atribs += img.attributes[i].name + ": " + img.attributes[i].value + "\n";
+    }
+    alert(atribs);
+
+    //Cambiar los rojos que haya a verdes
+    var rojos = document.getElementsByClassName("rojo");
+    for (var i = 0; i < rojos.length; i++) {
+        rojos[i].className = "verde";
+    }
+
+    //Acceso a los estilos
+    var enlace = document.getElementsByTagName("a")[0];
+    enlace.style.border = "2px dashed red";
+    enlace.style.padding = "15px";
+    enlace.style.fontSize = "12pt";
+</script>
+</body>
+</html>

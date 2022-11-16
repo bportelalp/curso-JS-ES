@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Navegador dentro de un navegador</title>
+	<link type="text/css" rel="stylesheet" href="navegador.css"></link>
+	<script type="text/javascript">
+		var ifrNavegador = null;
+	
+		function navegar(){
+			var destino = document.getElementById("direccion").value;
+			if (ifrNavegador == null)
+				ifrNavegador = document.getElementById("navegador");
+			
+			ifrNavegador.contentWindow.location.href = destino;
+		}
+	</script>
+</head>
+<body>
+	<div id="contenedor">
+		<div id="controles">
+			<span id="atras" onclick="history.back();"></span>
+			<span id="adelante" onclick="history.forward();"></span>
+			<input id="direccion" type="text" onkeypress="if (event.keyCode == 13) navegar();" value="http://www.campusmvp.es/recursos"></input>
+			<span id="refrescar" onclick="navegar();"></span>
+		</div>
+		<iframe id="navegador" src="http://www.campusmvp.es/recursos"></iframe>
+	</div>
+</body>
+</html>

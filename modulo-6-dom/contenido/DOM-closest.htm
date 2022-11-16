@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejemplo de DOM closest</title>
+</head>
+<body>
+    <h1>Ejemplo de DOM</h1>
+    <div id="padre">
+        <ul class="lista">
+            <li>Elemento 1</li>
+            <li>Elemento 2
+                <ul class="lista2">
+                    <li id="elto">Elemento 2.1</li>
+                    <li>Elemento 2.2
+                        <ul>
+                            <li>Elemento 2.2.1</li>
+                            <li class="lista">Elemento 2.2.2</li>
+                            <li>Elemento 2.2.3</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var elLista = document.getElementById('elto');
+        console.log(elLista.closest('ul'));
+        console.log(elLista.closest('ul.lista'));
+        console.log(elLista.closest('ul.lista, li'));
+        console.log(elLista.closest('h1')); //Null
+        console.log(elLista.closest('#padre'));
+        console.log(elLista.closest('#padre > .lista'));
+    </script>
+</body>
+</html>

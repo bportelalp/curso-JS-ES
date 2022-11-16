@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> </title>
+<style type="text/css">
+    .rojo {
+        color: red;
+    }
+    .verde {
+        color: green;
+    }
+</style>
+</head>
+<body>
+    <h1 class="rojo">Ejemplo de DOM</h1>
+    <ul id="lista">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+    </ul>
+    <a href="http://www.campusmvp.com" title="Visita la web de campusMVP">campusMVP</a>
+    <img src="http://www.campusmvp.com/Logo/logo.png" alt="Logo campusMVP" />
+
+<script type="text/javascript">
+    
+    //Crear un nuevo elemento, cambiar sus propiedades e insertarlo al final del cuerpo
+    var div = document.createElement("div");
+    div.innerHTML = "<h2>Nuevo subtítulo</h2>";
+    div.style.margin = "10px";
+    div.style.border = "1px dotted";
+    document.body.appendChild(div);
+
+    //Crear un nodo de texto y meterlo como hijo del div anterior
+    var texto = document.createTextNode("En un lugar de la mancha...");
+    div.appendChild(texto);
+
+    //Clonar la lista existente y sus elementos
+    var lista = document.getElementById("lista");
+    var lista2 = lista.cloneNode(true);
+
+    //adjunta la lista modificada (el clon) al principio del div
+    div.insertBefore(lista2, div.firstChild);
+
+    //mover la imagen al final div
+    var img = document.getElementsByTagName("img")[0];
+    div.appendChild(img);
+
+    //Cambiar el tercer nodo del div (el nodo de texto en este caso) por el enlace
+    var enlace = document.getElementsByTagName("a")[0];
+    div.replaceChild(enlace, div.childNodes[2])
+</script>
+</body>
+</html>
