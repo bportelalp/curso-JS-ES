@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> </title>
+
+<script type="text/javascript">
+
+    function Marcianito(elNombre, elColor, posX, posY, disparosIniciales) {
+        var _name = elNombre;
+        var that = this;
+        Marcianito.prototype.getName = function () {
+            return _name.toUpperCase() + " (" + that.color + ")";
+        };
+        Marcianito.prototype.setName = function (nombre) {
+            _name = nombre;
+        };
+        this.color = elColor;
+        this.x = posX;
+        this.y = posY;
+        this.disparos = disparosIniciales;
+        if (!Marcianito.prototype.disparar) {
+            Marcianito.prototype.disparar = function () {
+                this.disparos--;
+                //codigo para pintar el disparo
+                alert(that.getName() + " ha disparado. Le quedan " + that.disparos + " disparos");
+            };
+        }
+        Marcianito.prototype.toString = function () {
+            return that.getName() + " - " + this.color;
+        };
+    }
+
+    var marcianito1 = new Marcianito("Invasor del espacio 1", "Azul", 100, 20, 30);
+    
+    //Devuelve el nombre de la clase base de un objeto
+    function getObjectClassName(obj) {
+        if (obj && obj.constructor && obj.constructor.toString) {
+            var arr = obj.constructor.toString().match(
+                /function\s*(\w+)/);
+
+            if (arr && arr.length == 2) {
+                return arr[1];
+            }
+        }
+
+        return undefined;
+    }
+    
+    //Enumeración más elaborada de miembros de un objeto
+    function GetObjectInfo(obj)
+    {
+        var miembros = [];
+        var i = 0;
+        for (var prop in obj) {
+            miembros[i] = {
+                    nombre: prop,
+                    valor: obj[prop],
+                    tipo: getObjectClassName(obj[prop])
+                };
+            i++;
+        }
+        return miembros;
+    }
+
+    var infoMarcianito = GetObjectInfo(marcianito1);
+    alert(infoMarcianito[4].tipo);
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
