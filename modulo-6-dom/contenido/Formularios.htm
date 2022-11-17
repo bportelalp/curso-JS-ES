@@ -24,7 +24,7 @@
 	{
 		color:red;
 	}
-}
+
 </style>
 
 <script type="text/javascript">
@@ -38,7 +38,7 @@ function mostrarDatosFormulario(){
 		for (var j = 0; j<document.forms[i].elements.length; j++)
 		{
 			var e = document.forms[i].elements[j];
-			info += "·" + e.name + " (" + e.type + "): " + e.value + "<br/>";
+			info += "." + e.name + " (" + e.type + "): " + e.value + "<br/>";
 		}
 		info += "</blockquote>";
 	}
@@ -61,7 +61,7 @@ function mostrarDatosFormulario(){
 	  <input type="text" name="txtApellidos" size="40">
 </label>
 <br/>
-<label for="txtDir" class="Encabezado">Dirección<span class="Obligatorio">*</span>: 
+<label for="txtDir" class="Encabezado">DirecciÃ³n<span class="Obligatorio">*</span>: 
 	  <input type="text" name="txtDir" size="60"> 
 </label>
 <label for="txtCiudad" class="Encabezado"> Localidad: 
@@ -71,7 +71,7 @@ function mostrarDatosFormulario(){
   <input type="text" name="txtCP" size="5">
 </label>
 <br/>
-<label for="txtTlfn" class="Encabezado"> Teléfono<span class="Obligatorio">*</span>: 
+<label for="txtTlfn" class="Encabezado"> TelÃ©fono<span class="Obligatorio">*</span>: 
 	<input type="text" name="txtTlfn" size="15">
 </label>
 <br/>
