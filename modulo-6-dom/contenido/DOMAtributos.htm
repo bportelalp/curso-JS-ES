@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title> </title>
-<style type="text/css">
-    .rojo {
-        color: red;
-    }
-    .verde {
-        color: green;
-    }
-</style>
+    <title> </title>
+    <style type="text/css">
+        .rojo {
+            color: red;
+        }
+
+        .verde {
+            color: green;
+        }
+    </style>
 </head>
+
 <body>
     <h1 class="rojo">Ejemplo de DOM</h1>
     <ul id="lista">
@@ -20,37 +23,68 @@
     <a href="http://www.campusmvp.com" title="Visita la web de campusMVP">campusMVP</a>
     <img src="https://www.campusmvp.es/img/logo-campusmvp.svg?v=1" alt="Logo campusMVP" />
 
-<script type="text/javascript">
-    var img = document.getElementsByTagName("img")[0];
-    //por m�todos de atributos 
-    alert(img.getAttribute("src"));
-    //por colecci�n de atributos
-    alert(img.attributes["src"].value);
-    //por propiedad
-    alert(img.src);
-    //verificar si posee un atributo
-    alert(img.hasAttribute("alt")); //true
-    alert(img.hasAttribute("hspace")); //false
+    <script type="text/javascript">
+        var img = document.getElementsByTagName("img")[0];
+        //por m�todos de atributos 
+        // alert(img.getAttribute("src"));
+        //por colecci�n de atributos
+        // alert(img.attributes["src"].value);
+        //por propiedad
+        // alert(img.src);
+        //verificar si posee un atributo
+        // alert(img.hasAttribute("alt")); //true
+        // alert(img.hasAttribute("hspace")); //false
 
-    //mostrar todos los atributos de la imagen
-    var atribs = "";
-    for (var i = 0; i < img.attributes.length; i++)
-    {
-        atribs += img.attributes[i].name + ": " + img.attributes[i].value + "\n";
-    }
-    alert(atribs);
+        //mostrar todos los atributos de la imagen
+        var atribs = "";
+        for (var i = 0; i < img.attributes.length; i++) {
+            atribs += img.attributes[i].name + ": " + img.attributes[i].value + "\n";
+        }
+        // alert(atribs);
 
-    //Cambiar los rojos que haya a verdes
-    var rojos = document.getElementsByClassName("rojo");
-    for (var i = 0; i < rojos.length; i++) {
-        rojos[i].className = "verde";
-    }
+        //Cambiar los rojos que haya a verdes
+        var rojos = document.getElementsByClassName("rojo");
+        for (var i = 0; i < rojos.length; i++) {
+            rojos[i].className = "verde";
+        }
 
-    //Acceso a los estilos
-    var enlace = document.getElementsByTagName("a")[0];
-    enlace.style.border = "2px dashed red";
-    enlace.style.padding = "15px";
-    enlace.style.fontSize = "12pt";
-</script>
+        //Acceso a los estilos
+        var enlace = document.getElementsByTagName("a")[0];
+        enlace.style.border = "2px dashed red";
+        enlace.style.padding = "15px";
+        enlace.style.fontSize = "12pt";
+
+
+        setTimeout(() => {
+            let div = document.createElement('div');
+
+            div.innerHTML = '<h2>Nuevo subtítulo</h2>';
+
+            div.style.margin = '10px';
+            div.style.paddingLeft = '10px';
+            div.style.border = '2px dotted blue';
+            document.body.appendChild(div);
+            let texto = document.createTextNode('En un lugar de la Mancha...');
+            div.appendChild(texto);
+
+            setTimeout(() => {
+                let lista = document.getElementById('lista');
+                let lista2 = lista.cloneNode(true);
+                lista2.id = 'lista2';
+                div.insertBefore(lista2, div.firstChild);
+            }, 1000)
+
+            setTimeout(() => {
+                let imagen = document.getElementsByTagName('img')[0];
+                div.appendChild(imagen);
+            }, 2000);
+
+            setTimeout(() => {
+                let anchor = document.getElementsByTagName('a')[0];
+                div.replaceChild(anchor,texto);
+            }, 3000);
+        }, 1000);
+    </script>
 </body>
+
 </html>
