@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Prueba de abandono de página</title>
+<title>Prueba de abandono de pï¿½gina</title>
 <script type="text/javascript">
     var bPreguntar = true;
 
-    //window.onbeforeunload = preguntarAntesDeSalir;
+    window.onbeforeunload = preguntarAntesDeSalir;
+    // no se puede llamar a alert, o le devuelves algo o una cadena que se mostrara, donde
+    // se puede cancelar la salida. Si no devuelve nada, cancela la des-carga de la pÃ¡gina
     function preguntarAntesDeSalir() {
 		if (bPreguntar)
-            return "¿Seguro que quieres salir?";
+            return "Â¿Seguro que quieres salir?";
     }
 
 </script>
 
 </head> 
 <body>
-    <h1>Ejemplo de abandono de página</h1>
-    <p>Por defecto preguntará hasta que pulses el botón de "No preguntar"</p>
+    <h1>Ejemplo de abandono de pÃ¡gina</h1>
+    <p>Por defecto preguntarÃ¡ hasta que pulses el botÃ³n de "No preguntar"</p>
     <input type="button" value="Preguntar" onclick="bPreguntar = true;">&nbsp;&nbsp; 
     <input type="button" value="No preguntar" onclick="bPreguntar = false;">
     <br/><br/>
     
-    <a href="http://www.campusmvp.com">Ir a otra página</a>
+    <a href="http://www.campusmvp.com">Ir a otra pÃ¡gina</a>
 
 </body>
 </html>
