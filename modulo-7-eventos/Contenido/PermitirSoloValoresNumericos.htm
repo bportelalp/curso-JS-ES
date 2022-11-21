@@ -7,7 +7,7 @@
     <script type="text/javascript" src="EventHandlerHelper.js"></script>
     <script type="text/javascript">
 
-        //Para el evento keydown
+        //Para el evento keydown, si es un número osi son tambien los accesos del teclado
         function esTeclaNumeroOCursor(n) {
             return (n >= 48 && n <= 57) || (n >= 96 && n <= 105) || (n == 8) || (n >= 35 && n <= 46)
         }
@@ -22,7 +22,7 @@
             return function (event) {
                 event = EventHandlerHelper.fixEvent(event);
                 var input = event.target;
-                if (!esCaracterNumero(event.which) || input.value.length >= max)
+                if (!esTeclaNumeroOCursor(event.which) || input.value.length >= max)
                     event.preventDefault();
             };
         }
