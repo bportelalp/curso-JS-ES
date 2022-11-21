@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title> </title>
+	<title> </title>
+	<meta charset="utf-8" />
 
-<script type="text/javascript" src="EventHandlerHelper.js"></script>
+	<script type="text/javascript" src="EventHandlerHelper.js"></script>
 
-<style type="text/css" rel="style">
-	#contenedor {
-		width:200px;
-		height:200px;
-		margin: 0 auto;
-		padding-top:20px;
-		border: 2px solid black;
-		text-align:center;
-	}
-	
-	#enlace {
-		color: blue;
-	}
-	
-	#mensaje {
-		display:block;
-		width:400px;
-		margin: 10px auto;
-		border: 1px dashed black;
-	}
-</style>
+	<style type="text/css" rel="style">
+		#contenedor {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+			padding-top: 20px;
+			border: 2px solid black;
+			text-align: center;
+		}
+
+		#enlace {
+			color: blue;
+		}
+
+		#mensaje {
+			display: block;
+			width: 400px;
+			margin: 10px auto;
+			border: 1px dashed black;
+		}
+	</style>
 </head>
+
 <body>
-<div id="contenedor">
-  <a id="enlace" href="#">Púlsame</a>
-  <br/>
-</div>
-<span id="mensaje"></span>
+	<div id="contenedor">
+		<a id="enlace" href="#">Pï¿½lsame</a>
+		<br />
+	</div>
+	<span id="mensaje"></span>
 
-<script type="text/javascript">
-    //área de mensaje
-    var m = document.getElementById("mensaje");
-    var c = document.getElementById("contenedor");
-    var manejadorDiv = function(event)  {
-		EventHandlerHelper.fixEvent(event);
-        if (event.currentTarget.style.backgroundColor == "yellow")
-            event.currentTarget.style.backgroundColor = "silver";
-        else
-            event.currentTarget.style.backgroundColor = "yellow";
+	<script type="text/javascript">
+		//ï¿½rea de mensaje
+		var m = document.getElementById("mensaje");
+		var c = document.getElementById("contenedor");
+		var manejadorDiv = function (event) {
+			EventHandlerHelper.fixEvent(event);
+			if (event.currentTarget.style.backgroundColor == "yellow")
+				event.currentTarget.style.backgroundColor = "silver";
+			else
+				event.currentTarget.style.backgroundColor = "yellow";
 
-        m.innerHTML += "DIV ";
-    };
+			m.innerHTML += "DIV ";
+		};
 
-	EventHandlerHelper.addEventListener(c, "click", manejadorDiv);
+		EventHandlerHelper.addEventListener(c, "click", manejadorDiv);
 
-    var a = document.getElementById("enlace");
-    var manejadorEnlace = function (event) {
-		/* En el vídeo del curso se omite la asignación a 'event', lo cual funcionará en el 99,9% 
-		de los casos pero en versiones muy antiguas de IE en las que event será nulo originalmente 
-		es necesario asignarlo de nuevo para que obtenga lo devuelto por fixEvent ¡OJO! */
-		event = EventHandlerHelper.fixEvent(event);
-        if (event.currentTarget.style.backgroundColor == "red")
-            event.currentTarget.style.backgroundColor = "transparent";
-        else
-            event.currentTarget.style.backgroundColor = "red";
+		var a = document.getElementById("enlace");
+		var manejadorEnlace = function (event) {
+			/* En el vï¿½deo del curso se omite la asignaciï¿½n a 'event', lo cual funcionarï¿½ en el 99,9% 
+			de los casos pero en versiones muy antiguas de IE en las que event serï¿½ nulo originalmente 
+			es necesario asignarlo de nuevo para que obtenga lo devuelto por fixEvent ï¿½OJO! */
+			event = EventHandlerHelper.fixEvent(event);
+			if (event.currentTarget.style.backgroundColor == "red")
+				event.currentTarget.style.backgroundColor = "transparent";
+			else
+				event.currentTarget.style.backgroundColor = "red";
 
-        m.innerHTML += "A ";
-    };
+			m.innerHTML += "A ";
+		};
 
-    EventHandlerHelper.addEventListener(a, "click", manejadorEnlace);
+		EventHandlerHelper.addEventListener(a, "click", manejadorEnlace);
 
-</script>
+	</script>
 </body>
+
 </html>

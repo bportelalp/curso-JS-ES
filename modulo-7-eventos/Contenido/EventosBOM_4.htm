@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
- <title>Eventos BOM</title>
+	<meta charset="utf-8" />
+	<title>Eventos BOM</title>
 
 </head>
+
 <body>
 	<form>
-		<input id="btn1" type="button" value="Púlsame">
+		<input id="btn1" type="button" value="Pï¿½lsame">
 		<input id="btn2" type="button" value="Anular" onclick="anularManejador();">
 	</form>
 </body>
@@ -14,14 +17,14 @@
 	var numVeces = 0;
 
 	var btn = document.getElementById("btn1");
-	btn.onclick = function (){
+	btn.onclick = function () {
 		numVeces++;
 		alert("Me has pulsado " + numVeces + " veces.");
 	};
-	
-	function anularManejador(){
+
+	function anularManejador() {
 		btn.onclick = null;
 	}
 </script>
-</html>
 
+</html>

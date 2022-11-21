@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title> </title>
+    <title> </title>
+    <meta charset="utf-8" />
     <script type="text/javascript" src="EventHandlerHelper.js"></script>
     <script type="text/javascript">
 
-        //Constante para decidir el incremento de movimiento por cada pulsación de flecha
+        //Constante para decidir el incremento de movimiento por cada pulsaciï¿½n de flecha
         var INCREMENTO = 3;
         //Multiplica la velocidad por esta constante en modo turbo
         var TURBO_EXTRA = 20;
@@ -15,8 +17,7 @@
         function controlCursor(event) {
             event = EventHandlerHelper.fixEvent(event);
             var deltaX = 0, deltaY = 0;
-            switch (event.which)
-            {
+            switch (event.which) {
                 case 37:    //Flecha izquierda
                     deltaX = -GetIncremento(event.ctrlKey);
                     break;
@@ -30,12 +31,12 @@
                     deltaY = GetIncremento(event.ctrlKey);
                     break;
             }
-            //Incrementamos en "delta" la posición horizontal y vertical del marcianito
+            //Incrementamos en "delta" la posiciï¿½n horizontal y vertical del marcianito
             moverMarciano(deltaX, deltaY);
         }
 
         function GetIncremento(turboOn) {
-            //Si el turbo está "on" incrementamos el valor del incremento
+            //Si el turbo estï¿½ "on" incrementamos el valor del incremento
             if (turboOn)
                 return INCREMENTO + TURBO_EXTRA;
             else
@@ -46,7 +47,7 @@
         function moverMarciano(deltaX, deltaY) {
             var posX = parseInt(marciano.style.left) + deltaX;
             var posY = parseInt(marciano.style.top) + deltaY;
-            //Controlamos los límites
+            //Controlamos los lï¿½mites
             if (posX <= 0) posX = 0;
             if (posX >= document.documentElement.clientWidth) posX = document.documentElement.clientWidth - marciano.width;
             if (posY <= 0) posY = 0;
@@ -56,7 +57,7 @@
         }
 
         function initialize() {
-            //averiguamos cuál es el centro de la pantalla
+            //averiguamos cuï¿½l es el centro de la pantalla
             var ancho = document.documentElement.clientWidth;
             var alto = document.documentElement.clientHeight;
             //Colocamos el marcinanito en el centro
@@ -70,10 +71,12 @@
         window.onload = initialize;
     </script>
 </head>
+
 <body>
     <span style="font-size:xx-small;">Pulsa las flechas para mover al marciano.<br />
         Pulsa CTRL para acelerar el movimiento.</span>
-    
+
     <img id="marcianito" src="invader.png" style="position:absolute;" />
 </body>
+
 </html>

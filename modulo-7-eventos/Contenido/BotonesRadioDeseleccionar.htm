@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title> </title>
+    <title> </title>
+    <meta charset="utf-8" />
     <script type="text/javascript" src="EventHandlerHelper.js"></script>
     <script type="text/javascript">
 
-        //Objeto global vac韔 para guardar la 鷏tima selecci髇 de cada grupo de botones de radio
+        //Objeto global vac铆o para guardar la 煤ltima selecci贸n de cada grupo de botones de radio
         var currSel = {};
 
-        //Deselecciona el bot髇 de radio seleccionado si se vuelve a seleccionar
-        function optDeselect(event)
-        {
+        //Deselecciona el bot贸n de radio seleccionado si se vuelve a seleccionar
+        function optDeselect(event) {
             event = EventHandlerHelper.fixEvent(event);
             var opt = event.target;
             if (opt.id == currSel[opt.name]) {
@@ -22,12 +23,10 @@
             }
         }
 
-        function initialize()
-        {
+        function initialize() {
             //busco todos los botones de radio y les asigno el manejador optDeselect para sus eventos click
             var radios = document.getElementsByTagName("input");
-            for (var i = 0; i < radios.length; i++)
-            {
+            for (var i = 0; i < radios.length; i++) {
                 if (radios[i].type == "radio")
                     EventHandlerHelper.addEventListener(radios[i], "click", optDeselect);
             }
@@ -36,15 +35,17 @@
         window.onload = initialize;
     </script>
 </head>
-<body>
-<h2>Primer grupo de opciones:</h2>
-    <input type="radio" name="grp1" id="g1op1" /><label for="g1op1">Opci髇 1</label><br />
-    <input type="radio" name="grp1" id="g1op2" /><label for="g1op2">Opci髇 2</label><br />
-    <input type="radio" name="grp1" id="g1op3" /><label for="g1op3">Opci髇 3</label>
 
-<h2>Segundo grupo de opciones:</h2>
-    <input type="radio" name="grp2" id="g2op1" /><label for="g2op1">Opci髇 A</label><br />
-    <input type="radio" name="grp2" id="g2op2" /><label for="g2op2">Opci髇 B</label><br />
-    <input type="radio" name="grp2" id="g2op3" /><label for="g2op3">Opci髇 C</label>
+<body>
+    <h2>Primer grupo de opciones:</h2>
+    <input type="radio" name="grp1" id="g1op1" /><label for="g1op1">Opci贸n 1</label><br />
+    <input type="radio" name="grp1" id="g1op2" /><label for="g1op2">Opci贸n 2</label><br />
+    <input type="radio" name="grp1" id="g1op3" /><label for="g1op3">Opci贸n 3</label>
+
+    <h2>Segundo grupo de opciones:</h2>
+    <input type="radio" name="grp2" id="g2op1" /><label for="g2op1">Opci贸n A</label><br />
+    <input type="radio" name="grp2" id="g2op2" /><label for="g2op2">Opci贸n B</label><br />
+    <input type="radio" name="grp2" id="g2op3" /><label for="g2op3">Opci贸n C</label>
 </body>
+
 </html>

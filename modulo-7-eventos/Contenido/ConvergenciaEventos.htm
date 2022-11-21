@@ -1,63 +1,67 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title> </title>
-<style type="text/css" rel="style">
-	#contenedor {
-		width:200px;
-		height:200px;
-		margin: 0 auto;
-		padding-top:20px;
-		border: 2px solid black;
-		text-align:center;
-	}
-	
-	#enlace {
-		color: blue;
-	}
-	
-	#mensaje {
-		display:block;
-		width:400px;
-		margin: 10px auto;
-		border: 1px dashed black;
-	}
-</style>
+    <title> </title>
+    <meta charset="utf-8" />
+    <style type="text/css" rel="style">
+        #contenedor {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border: 2px solid black;
+            text-align: center;
+        }
+
+        #enlace {
+            color: blue;
+        }
+
+        #mensaje {
+            display: block;
+            width: 400px;
+            margin: 10px auto;
+            border: 1px dashed black;
+        }
+    </style>
 </head>
+
 <body>
-<div id="contenedor">
-  <a id="enlace" href="#">Púlsame</a>
-  <br/>
-</div>
-<span id="mensaje"></span>
+    <div id="contenedor">
+        <a id="enlace" href="#">Púlsame</a>
+        <br />
+    </div>
+    <span id="mensaje"></span>
 
-<script type="text/javascript">
-    //Área de mensaje
-    var m = document.getElementById("mensaje");
-    var c = document.getElementById("contenedor");
-    var manejadorDiv = function()  {
-        if (c.style.backgroundColor == "yellow")
-            c.style.backgroundColor = "silver";
-        else
-            c.style.backgroundColor = "yellow";
+    <script type="text/javascript">
+        //Área de mensaje
+        var m = document.getElementById("mensaje");
+        var c = document.getElementById("contenedor");
+        var manejadorDiv = function () {
+            if (c.style.backgroundColor == "yellow")
+                c.style.backgroundColor = "silver";
+            else
+                c.style.backgroundColor = "yellow";
 
-        m.innerHTML += "DIV ";
-    };
+            m.innerHTML += "DIV ";
+        };
 
-    c.addEventListener("click", manejadorDiv, false);
+        c.addEventListener("click", manejadorDiv, false);
 
-    var a = document.getElementById("enlace");
-    var manejadorEnlace = function () {
-        if (a.style.backgroundColor == "red")
-            a.style.backgroundColor = "transparent";
-        else
-            a.style.backgroundColor = "red";
+        var a = document.getElementById("enlace");
+        var manejadorEnlace = function () {
+            if (a.style.backgroundColor == "red")
+                a.style.backgroundColor = "transparent";
+            else
+                a.style.backgroundColor = "red";
 
-        m.innerHTML += "A ";
-    };
+            m.innerHTML += "A ";
+        };
 
-    a.addEventListener("click", manejadorEnlace, false);
+        a.addEventListener("click", manejadorEnlace, false);
 
-</script>
+    </script>
 </body>
+
 </html>

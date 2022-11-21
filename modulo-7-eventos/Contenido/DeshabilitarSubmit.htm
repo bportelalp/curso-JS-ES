@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
- <title></title>
+    <title></title>
+    <meta charset="utf-8" />
 </head>
+
 <body>
 
-<form id="frm1" name="frm1" method="post" action="">
-    <input type="text" name="txtNombre" value="" />
-    <input type="submit" value="Enviar"/>
-</form>
+    <form id="frm1" name="frm1" method="post" action="">
+        <input type="text" name="txtNombre" value="" />
+        <input type="submit" value="Enviar" />
+    </form>
 
-<script type="text/javascript">
-    function submitDisabled() {
-        var els = document.forms["frm1"].elements;
-        for (var i = 0; i < els.length; i++) {
-            if (els[i].type == "submit")
+    <script type="text/javascript">
+        function submitDisabled() {
+            var els = document.forms["frm1"].elements;
+            for (var i = 0; i < els.length; i++) {
+                if (els[i].type == "submit")
                     els[i].disabled = true;
+            }
+            //devuelve false para que no lo envï¿½e y podamos ver que el botï¿½n queda deshabilitado
+            return false;
         }
-        //devuelve false para que no lo envíe y podamos ver que el botón queda deshabilitado
-        return false;
-    }
 
-    var frm = document.getElementById("frm1");
-    frm.onsubmit = submitDisabled;
-</script>
+        var frm = document.getElementById("frm1");
+        frm.onsubmit = submitDisabled;
+    </script>
 </body>
-</html>
 
+</html>

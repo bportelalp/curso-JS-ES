@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title> </title>
+    <meta charset="utf-8" />
+    <title> </title>
     <script type="text/javascript" src="EventHandlerHelper.js"></script>
     <script type="text/javascript">
 
         //Para el evento keydown
         function esTeclaNumeroOCursor(n) {
-            return (n >= 48 && n <=57) || (n >= 96 && n <=105) || (n == 8) || (n >= 35 && n <=46 )
+            return (n >= 48 && n <= 57) || (n >= 96 && n <= 105) || (n == 8) || (n >= 35 && n <= 46)
         }
 
         //para el evento keypress
@@ -15,7 +17,7 @@
             return (n >= 48 && n <= 57)
         }
 
-        //verifica que solo sean números y de una longitud máxima
+        //verifica que solo sean nï¿½meros y de una longitud mï¿½xima
         function soloNumeros(max) {
             return function (event) {
                 event = EventHandlerHelper.fixEvent(event);
@@ -28,7 +30,7 @@
         //Evita que se pegue usando CTRL+V
         function evitaPegado(event) {
             event = EventHandlerHelper.fixEvent(event);
-            if ( event.which == 86 && event.ctrlKey == true)
+            if (event.which == 86 && event.ctrlKey == true)
                 event.preventDefault();
         }
 
@@ -37,16 +39,16 @@
         }
 
         function initialize() {
-            //Solo números y longitud máxima
+            //Solo nï¿½meros y longitud mï¿½xima
             EventHandlerHelper.addEventListener(document.getElementById("datos"), "keypress", soloNumeros(5));
             EventHandlerHelper.addEventListener(document.getElementById("datos2"), "keypress", soloNumeros(4));
-			
+
             //Prohibir pegar del portapapeles con CTRL + V
-            //No sirve d emucho por el menú contextual (descomentar para verlo)
+            //No sirve d emucho por el menï¿½ contextual (descomentar para verlo)
             //EventHandlerHelper.addEventListener(document.getElementById("datos"), "keydown", evitaPegado);
             //EventHandlerHelper.addEventListener(document.getElementById("datos2"), "keydown", evitaPegado);
 
-            //Evitar menú contextual (NO SIRVE en IE o Firefox, descomentar para verlo)
+            //Evitar menï¿½ contextual (NO SIRVE en IE o Firefox, descomentar para verlo)
             //EventHandlerHelper.addEventListener(document.getElementById("datos"), "contextmenu", cancelaEvento);
             //EventHandlerHelper.addEventListener(document.getElementById("datos2"), "contextmenu", cancelaEvento);
 
@@ -58,9 +60,11 @@
         window.onload = initialize;
     </script>
 </head>
+
 <body>
-    <label for="datos">Sólo permite introducir números: </label><input id="datos" size="10" />
+    <label for="datos">Sï¿½lo permite introducir nï¿½meros: </label><input id="datos" size="10" />
     <br />
-    <label for="datos2">Otro que sólo permite introducir números: </label><input id="datos2" size="10" />
+    <label for="datos2">Otro que sï¿½lo permite introducir nï¿½meros: </label><input id="datos2" size="10" />
 </body>
+
 </html>
