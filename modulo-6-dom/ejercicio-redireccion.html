@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Redireccion a otra pagina</title>
+</head>
+
+<body>
+    <h1 id="title">Navegar a... </h1>
+    <button id="redirect">Abrir pagina</button>
+
+    <script>
+        let nextPage = 'https://www.eldiario.es/'
+
+        let titleElement = document.getElementById('title');
+        titleElement.innerText += ' ' + nextPage
+        let button = document.getElementById('redirect');
+        button.addEventListener('click',() =>{
+            console.log('Evento');
+            window.open(nextPage, '_blank');
+        });
+    </script>
+</body>
+
+</html>
