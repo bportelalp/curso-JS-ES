@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> </title>
+    <script type="text/javascript" src="EventHandlerHelper.js"></script>
+    <script type="text/javascript">
+
+        //Objeto global vacío para guardar la última selección de cada grupo de botones de radio
+        var currSel = {};
+
+        //Deselecciona el botón de radio seleccionado si se vuelve a seleccionar
+        function optDeselect(event)
+        {
+            event = EventHandlerHelper.fixEvent(event);
+            var opt = event.target;
+            if (opt.id == currSel[opt.name]) {
+                opt.checked = false;
+                currSel[opt.name] = "";
+            }
+            else {
+                currSel[opt.name] = opt.id;
+            }
+        }
+
+        function initialize()
+        {
+            //busco todos los botones de radio y les asigno el manejador optDeselect para sus eventos click
+            var radios = document.getElementsByTagName("input");
+            for (var i = 0; i < radios.length; i++)
+            {
+                if (radios[i].type == "radio")
+                    EventHandlerHelper.addEventListener(radios[i], "click", optDeselect);
+            }
+        }
+
+        window.onload = initialize;
+    </script>
+</head>
+<body>
+<h2>Primer grupo de opciones:</h2>
+    <input type="radio" name="grp1" id="g1op1" /><label for="g1op1">Opción 1</label><br />
+    <input type="radio" name="grp1" id="g1op2" /><label for="g1op2">Opción 2</label><br />
+    <input type="radio" name="grp1" id="g1op3" /><label for="g1op3">Opción 3</label>
+
+<h2>Segundo grupo de opciones:</h2>
+    <input type="radio" name="grp2" id="g2op1" /><label for="g2op1">Opción A</label><br />
+    <input type="radio" name="grp2" id="g2op2" /><label for="g2op2">Opción B</label><br />
+    <input type="radio" name="grp2" id="g2op3" /><label for="g2op3">Opción C</label>
+</body>
+</html>

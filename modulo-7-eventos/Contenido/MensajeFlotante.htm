@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> </title>
+    <style type="text/css">
+        .flotante
+        {
+            position:absolute;
+            border: 1px solid red; 
+            width:150px; 
+            padding:5px;
+            font-size: small;
+            font-weight:bold;
+            text-align: center;
+            background-color:yellow;
+            visibility: hidden;
+        }
+    </style>
+    <script type="text/javascript" src="EventHandlerHelper.js"></script>
+    <script type="text/javascript">
+
+		var mf = null;
+	
+        function moveDiv(event)
+        {
+            event = EventHandlerHelper.fixEvent(event);
+			if (mf == null)
+				mf = document.getElementById("mensajeFlotante");
+            
+			mf.textContent = "(" + event.clientX + ", " + event.clientY + ")";
+			mf.style.left = event.clientX + 10 + "px";
+            mf.style.top = event.clientY + "px";
+            mf.style.visibility = "visible";
+        }
+
+        function initialize()
+        {
+            EventHandlerHelper.addEventListener(document, "mousemove", moveDiv);
+        }
+
+        window.onload = initialize;
+    </script>
+</head>
+<body>
+<div id="mensajeFlotante" class="flotante">¡Por qué me persigues!</div>
+</body>
+</html>

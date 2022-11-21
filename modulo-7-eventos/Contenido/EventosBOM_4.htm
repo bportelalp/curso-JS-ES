@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Eventos BOM</title>
+
+</head>
+<body>
+	<form>
+		<input id="btn1" type="button" value="Púlsame">
+		<input id="btn2" type="button" value="Anular" onclick="anularManejador();">
+	</form>
+</body>
+<script type="text/javascript">
+	var numVeces = 0;
+
+	var btn = document.getElementById("btn1");
+	btn.onclick = function (){
+		numVeces++;
+		alert("Me has pulsado " + numVeces + " veces.");
+	};
+	
+	function anularManejador(){
+		btn.onclick = null;
+	}
+</script>
+</html>
+

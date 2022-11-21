@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+ <script language="JavaScript">
+    var numVeces = 0;
+
+    function boton_onClick()
+    {
+      numVeces++;
+      alert("Me has pulsado " + numVeces + " veces.");
+    }
+ </script>
+
+<body>
+<form>
+<input id="btn1" type="button" value="Púlsame">
+</form>
+<script type="text/javascript">
+    var btn = document.getElementById("btn1");
+    btn.onclick = boton_onClick;
+</script>
+</body>
+</html>
+

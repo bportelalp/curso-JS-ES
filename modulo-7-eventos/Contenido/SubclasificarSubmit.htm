@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+    <script language="javascript" type="text/javascript" src="DeshabilitarSubmit.js"></script>
+</head>
+<body>
+
+<form id="frm1" name="frm1" method="post" action="">
+    <input type="text" name="txtNombre" value="" />
+    <input type="submit" value="Enviar"/>
+</form>
+
+<script type="text/javascript">
+
+    function validar()
+    {
+        if (window.frm.txtNombre.value.trim() == "")
+        {
+            alert("El nombre del usuario es obligatorio");
+            return false;
+        }
+        return true;
+    }
+
+    var frm = document.getElementById("frm1");
+    frm.onsubmit = validar;
+</script>
+</body>
+</html>
+
