@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> </title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        .flotante {
+            position: absolute;
+            border: 1px solid red;
+            width: 150px;
+            padding: 5px;
+            font-size: small;
+            font-weight: bold;
+            text-align: center;
+            background-color: yellow;
+            visibility: hidden;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var mf = null;
+
+        function moveDiv(event) {
+
+            if (mf == null)
+                mf = document.getElementById("mensajeFlotante");
+
+            const offset = calculateOffset();
+            mf.textContent = "(" + event.clientX + ", " + event.clientY + ")";
+            mf.style.left = event.clientX + offset + "px";
+            mf.style.top = event.clientY + "px";
+            mf.style.visibility = "visible";
+
+        }
+
+        /**
+        * Estimate offset to start painting div to prevent overflow from body
+        **/
+        function calculateOffset() {
+            const bodyWidth = document.body.offsetWidth
+            const divWidth = mf.offsetWidth;
+            let offset = 10;
+            if ((event.clientX + offset + divWidth) >= bodyWidth)
+                offset = -divWidth - 10
+            return offset;
+        }
+
+        function initialize() {
+            document.addEventListener("mousemove", moveDiv);
+        }
+
+        window.onload = initialize;
+    </script>
+</head>
+
+<body>
+    <p>
+        En el ejemplo de la etiqueta que persigue al ratón mostrando sus coordenadas, haz que cuando esté cerca del borde derecho de la página, lo suficiente como para que tape todo o parte de la etiqueta, ésta se muestre hacia el otro lado, de modo que siempre quede dentro del área visible de la página y no salgan barras de scroll.
+    </p>
+    <div id="mensajeFlotante" class="flotante">¡Por qué me persigues!</div>
+</body>
+
+</html>
