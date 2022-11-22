@@ -1,0 +1,16 @@
+{
+  "name": "campusMVP.Validador",
+  "version": "1.0.0",
+  "description": "",
+  "main": "campusMVP_Validador.js",
+  "dependencies": {
+    "uglify-js": "^3.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "min": "uglifyjs campusMVP_Validador.js --compress --mangle --comments --source-map filename=campusMVP_Validador.min.js.map -o campusMVP_Validador.min.js --source-map"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

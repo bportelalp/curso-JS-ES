@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+<title>Validación con un resumen para todos los campos, al enviar</title>
+<style type="text/css">
+	body 
+	{
+		font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size:12px;
+	}
+	.cabecera
+	{
+		text-align:center;
+		font-weight:bold;
+		font-size:2.5em;
+		color:blue;
+	}
+	.Encabezado
+	{
+		font-weight:bold;
+		font-size:1.5em;
+	}
+	.Obligatorio
+	{
+		color:red;
+	}
+
+    #formulario {
+        float:left;
+        margin-right:10px;
+    }
+
+    #errores {
+        float:left;
+        width:250px;
+        border: 1px dashed red;
+        padding:10px;
+        visibility:hidden;
+    }
+
+</style>
+
+<link rel="stylesheet" href="validador.css"></link>
+    <script type="text/javascript" src="campusMVP_Validador.min.js"></script>
+<script type="text/javascript">
+    function miValidacionEspecial(marcadoSiONo) {
+        marcadoSiONo = new Boolean(marcadoSiONo);
+        return (this.checked == marcadoSiONo);
+    }
+
+    //función que realiza la validación y muestra los mensajes
+    function Valida(frm) {
+        //Provocamos la validación completa del formulario pero sin mostrar nada por la interfaz
+        //Esto marca los campos no válidos con la propiedad esValido = false
+        campusMVP.Validador.validaFormulario(frm, false);
+        //Ahora recorro todos los campos para ver cuáles no son válidos y recopilar los mensajes de error
+        var msgError = "<strong>ERRORES DE VALIDACIÓN:</strong><ul>";
+        var numErrores = 0;
+        for (var i = 0; i < frm.elements.length; i++) {
+            if (!frm.elements[i].esValido) {
+                numErrores++;
+                msgError += "<li>" + campusMVP.Validador.getMensajeValidacion(frm.elements[i]) + "</li>";
+            }
+        }
+        msgError += "</ul>";
+
+        var divErrores = document.getElementById("errores");
+
+        if (numErrores > 0) {
+            divErrores.innerHTML = msgError;
+            divErrores.style.visibility = "visible";
+            return false;
+        } else {
+            divErrores.innerHTML = "";
+            divErrores.style.visibility = "hidden";
+            return true;
+        }
+    }
+
+</script>
+</head>
+<body>
+
+<h1 class="cabecera">Envío de datos personales</h1>
+    <div id="contenedor">
+        <div id="formulario">
+            <form name="frmDatos" action="" method="get" onsubmit="return Valida(this);">
+                <label for="txtNombre" class="Encabezado">
+                    Nombre<span class="Obligatorio">*</span>:
+                    <input type="text" name="txtNombre" size="20" val-obligatorio val-longmin="2" val-longmax="20" val-mensaje="El nombre debe tener al menos 2 letras, y 20 como máximo.">
+                </label>
+                <br />
+                <label for="txtApellidos" class="Encabezado">
+                    Apellidos<span class="Obligatorio">*</span>:
+                    <input type="text" name="txtApellidos" size="40" val-obligatorio val-longmin="2" val-longmax="40" val-mensaje="El apellido debe tener al menos 2 letras, y 40 como máximo.">
+                </label>
+                <br />
+                <label for="txtFNac" class="Encabezado">
+                    Fecha Nacimiento<span class="Obligatorio">*</span>:
+                    <input type="text" name="txtFNac" size="10" val-obligatorio val-fecha val-rangofechas="1/1/1900" val-mensaje="La fecha debe estar entre 1900 y 1997">
+                </label>
+                <label for="txtCP" class="Encabezado">
+                    C.P.:
+                    <input type="text" name="txtCP" size="5">
+                </label>
+                <br />
+                <label for="txtEdad" class="Encabezado">
+                    Edad (18-100):
+                    <input type="text" name="txtEdad" size="2" val-rango="18-100" val-mensaje="La edad debe estar entre 18 y 100 años">
+                </label>
+                <br />
+                <label for="txtTlfn" class="Encabezado">
+                    Teléfono:
+                    <input type="text" name="txtTlfn" size="15">
+                </label>
+                <br />
+                <label for="txtEMail" class="Encabezado">
+                    eMail:
+                    <input type="text" name="txtEMail" size="30" val-email val-longmax="30" val-mensaje="Introduce un email válido">
+                </label>
+                <br />
+                <p>
+                    <input type="checkbox" name="chkInfo" value="checkbox" checked val-custom="miValidacionEspecial(true)" val-mensaje="Debes aceptar recibir información ;-).">
+                    <label for="chkInfo" class="Encabezado">Deseo recibir información sobre sus productos</label>
+                </p>
+                <p>
+                    <input type="submit" name="Enviar" value="Enviar datos personales">
+                    <input type="reset" name="Reset" value="Volver a rellenar datos">
+                </p>
+            </form>
+        </div>
+        <div id="errores"></div>
+    </div>
+</body>
+</html>

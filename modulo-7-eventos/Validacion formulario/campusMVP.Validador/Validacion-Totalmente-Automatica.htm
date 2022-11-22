@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación totalmente automática al enviar</title>
+    <style type="text/css">
+        body
+        {
+            font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size:12px;
+        }
+        .cabecera
+        {
+            text-align:center;
+            font-weight:bold;
+            font-size:2.5em;
+            color:blue;
+        }
+        .Encabezado
+        {
+            font-weight:bold;
+            font-size:1.5em;
+        }
+        .Obligatorio
+        {
+            color:red;
+        }
+
+        #formulario {
+            float:left;
+            margin-right:10px;
+        }
+
+        #errores {
+            float:left;
+            width:250px;
+            border: 1px dashed red;
+            padding:10px;
+            visibility:hidden;
+        }
+    </style>
+
+    <link rel="stylesheet" href="validador.css"/>
+    <script type="text/javascript" src="campusMVP_Validador.js"></script>
+    <script type="text/javascript">
+        function miValidacionEspecial(marcadoSiONo) {
+            marcadoSiONo = new Boolean(marcadoSiONo);
+            return (this.checked == marcadoSiONo);
+        }
+    </script>
+</head>
+<body>
+
+<h1 class="cabecera">Env&iacute;o de datos personales</h1>
+
+<form name="frmDatos" action="" method="get" onsubmit="return campusMVP.Validador.validaFormulario(this, true);">
+<label for="txtNombre" class="Encabezado">Nombre<span class="Obligatorio">*</span>:
+	  <input type="text" name="txtNombre" size="20" data-val-obligatorio data-val-longMin="2" data-val-longMax="20" data-val-mensaje="El nombre debe tener al menos 2 letras, y 20 como máximo.">
+</label>
+<br/>
+<label for="txtApellidos" class="Encabezado">Apellidos<span class="Obligatorio">*</span>:
+    <input type="text" name="txtApellidos" size="40" data-val-obligatorio data-val-longmin="2" data-val-longmax="40" data-val-mensaje="El apellido debe tener al menos 2 letras, y 40 como máximo.">
+</label>
+<br/>
+<label for="txtFNac" class="Encabezado">Fecha Nacimiento<span class="Obligatorio">*</span>:
+	  <input type="text" name="txtFNac" size="10" data-val-obligatorio data-val-fecha data-val-rangoFechas="1/1/1900" data-val-mensaje="La fecha debe estar entre 1900 y 1997">
+</label>
+<label for="txtCP" class="Encabezado"> C.P.:
+    <input type="text" name="txtCP" size="5">
+</label>
+<br/>
+<label for="txtEdad" class="Encabezado">
+    Edad (18-100):
+    <input type="text" name="txtEdad" size="2" data-val-rango="18-100" data-val-mensaje="La edad debe estar entre 18 y 100 años">
+</label>
+<br />
+<label for="txtTlfn" class="Encabezado"> Teléfono:
+	<input type="text" name="txtTlfn" size="15">
+</label>
+<br/>
+<label for="txtEMail" class="Encabezado"> eMail:
+	<input type="text" name="txtEMail" size="30" data-val-EMail data-val-longMax="30" data-val-mensaje="Introduce un email válido">
+</label>
+<br/>
+<p>
+  <input type="checkbox" name="chkInfo" value="checkbox" checked data-val-custom="miValidacionEspecial(true)" data-val-mensaje="Debes aceptar recibir información ;-).">
+  <label for="chkInfo" class="Encabezado">Deseo recibir informaci&oacute;n sobre sus productos</label>
+</p>
+<p>
+  <input type="submit" name="Enviar" value="Enviar datos personales">
+  <input type="reset" name="Reset" value="Volver a rellenar datos">
+</p>
+</form>
+</body>
+</html>
