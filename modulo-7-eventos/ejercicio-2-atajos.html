@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Atajos de teclado</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <div>
+        Añade a una página cualquiera (que tenga al menos varios elementos div, input de tipo text y párrafos de texto)
+        la capacidad de detectar la pulsación de determinadas teclas que actuarán como atajos o teclas rápidas para un
+        hipotético programa que tienes en esta página. Por ejemplo, que se detecte la pulsación de la tecla F2 y que
+        esto haga que se muestre un div con ayuda, o la combinación de teclas CTRL+T para hacer cualquier otra cosa (en
+        nuestro ejemplo, simplemente mostrará un alert). Debes asegurarte de un par de cosas:
+
+        <ul>
+            <li>
+                Que las teclas rápidas se detecten pulsándolas cuando el foco esté en cualquier parte de la página.
+            </li>
+            <li>
+                Que si el foco está en algún elemento que acepte entrada de texto (un input de tipo text, por ejemplo)
+                que no tengan efecto dichas teclas.
+            </li>
+        </ul>
+        Una pregunta importante: ¿Funcionan todas las combinaciones? Por ejemplo, realmente eres capaz de detectar y
+        responder a CTRL+T siempre. Prueba con CTRL+Q a ver si pasa lo mismo...
+
+    </div>
+    <div>
+        <div>
+            Los siguientes elementos son para probar el foco
+        </div>
+        <div>
+            <input type="text" placeholder="una entrada de texto" />
+        </div>
+        <div>
+            <button>Un botón</button>
+        </div>
+    </div>
+    <div id="textHelp" style="visibility: hidden;">
+        <h6>Texto de ayuda</h6>
+        <div>Esto aparece porque has pulsado F2. Vuelve a pulsarlo para ocultar</div>
+    </div>
+    <script>
+        console.log('Página renderizada. Entrando en script');
+
+        // El elemento de la ayuda para F2
+        const divHelp = document.getElementById('textHelp');
+
+        const listenerKeys = (event) => {
+            console.log('Tecla pulsada: ', event.key, 'Control: ', event.ctrlKey, 'Shift: ', event.shiftKey);
+            // Ignorar evento si el foco está sobre un input
+            if (document.activeElement.tagName == 'INPUT') {
+                return;
+            }
+            // Cambiar visibilidad del div si se pulsa F2
+            if (event.key == 'F2') {
+                if (divHelp.style.visibility == 'hidden') {
+                    divHelp.style.visibility = 'visible';
+                }
+                else {
+                    divHelp.style.visibility = 'hidden';
+                }
+            }
+            // Mostrar alerta con CTRL+T
+            if (event.key.toUpperCase() == 'T' && event.ctrlKey) {
+                alert('Has pulsado CTRL+T');
+            }
+            
+        }
+        // Vincular el listener en el evento de document. Salvo que alguien detenga la propagación llegará hasta este
+        window.addEventListener('keydown', listenerKeys);
+        console.log('Listener configurado');
+    </script>
+</body>
+
+</html>
