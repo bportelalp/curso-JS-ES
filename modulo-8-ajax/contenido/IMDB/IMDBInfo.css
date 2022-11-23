@@ -1,0 +1,65 @@
+#titPelicula {
+	width:75%;
+}
+
+#contenedor {
+	width:700px;
+	margin:0 auto;
+}
+
+#cabecera {
+	padding:0;
+	background-image:url('IMDB.jpg');
+	width:700px;
+	height:189px;
+	margin-bottom:10px;
+}
+
+#caratula img {
+	margin:10px auto;
+	display:block;
+	border: 2px solid black;	
+}
+
+#infoPeli {
+	margin-left:15px;
+}
+
+#resBusqueda {
+	margin:0;
+	float:left;
+	width:200px;
+	padding:10px;
+	overflow:auto;
+}
+
+#resBusqueda p {
+	font-size:16px;
+	text-decoration: underline;
+	cursor:pointer;
+}
+
+.seleccionado  {
+	background-color:silver;
+	font-weight:bolder;
+}
+
+
+#resBusqueda span {
+	font-size:16px;
+	text-decoration: none;
+	font-weight:bold;
+	color:red;
+}
+
+#detalle {
+	margin:0;
+	float:left;
+	width:450px;
+	padding:10px;
+	display:none;
+}
+
+#detalle .encabezado {
+	font-weight:bold;
+}

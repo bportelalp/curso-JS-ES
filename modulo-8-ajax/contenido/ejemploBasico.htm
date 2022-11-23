@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejemplo de autocompletar con AJAX</title>
+<script type="text/javascript">
+
+var httpReq;    //objeto para realizar peticiones HTTP
+var items;	    //Contendrá el XML obtenido para los elementos de la lista
+
+//Se encarga de cargar los items de la lista secundaria
+function cargaItems(tipo)
+{
+	getXML("damesecundario.asp?tipo=" + tipo);
+}
+
+function getXML(url)
+{
+	//Soportado por Firefox, Opera, Chrome y Safari
+	if (window.XMLHttpRequest)
+	{
+		httpReq = new XMLHttpRequest();
+	}
+	else	//Internet Explorer lo expone como control Active X
+	{
+		httpReq = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	//Ya debería tener una referencia al objeto
+	if (httpReq != null)
+	{
+		httpReq.onreadystatechange = finCarga;
+		httpReq.open("GET", url, true)	//El true del final es para que lo solicite de forma asíncrona
+		httpReq.send(null);	//al ser una petición GET no va nada en el cuerpo de la petición, de ahí el null
+	}
+}
+
+//Función que se ejecuta cuando cambia el estado de la carga del objeto httpReq
+function finCarga()
+{
+	if (httpReq.readyState == 4)	//4: completado, 3: en curso, 1:cargado, 0: no iniciado
+	{
+		if (httpReq.status == 200)	//200: OK (código HTTP, podría haber sido 404 (no encontrado), 500 (error), etc...)
+		{
+			items = httpReq.responseXML.getElementsByTagName("item");	//Coge sólo los elementos "item"
+			ProcesaItems();
+		}
+		else	//Se produjo un error
+		{
+			alert("No se pudo recuperar la información de la lista secundaria: " + httpReq.statusText);
+		}
+	}
+}
+
+function ProcesaItems()
+{
+	listaSec = document.getElementById("mnuSecundario");
+	if (listaSec != null)
+	{
+		listaSec.options.length = 0;	//Vacía la lista de opciones
+		//Cargamos las nuevas opciones
+		for(i=0; i<items.length; i++)
+		{
+			var opc = document.createElement("OPTION");
+			opc.text = items[i].childNodes[0].nodeValue;
+			opc.value = items[i].childNodes[0].nodeValue;
+			listaSec.options.add(opc);
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<a href="http://www.campusmvp.com">
+<img src="campusmvp.jpg" style="border-width: 0px" /></a>
+<p><b>Ejemplo</b> de <b>auto-completar</b> din&aacute;micamente desde el servidor
+<b>con AJAX</b></p>
+<p>Selecciona un elemento de la primera lista y ver&aacute;s como se rellena 
+<br>din&aacute;micamente el contenido de la segunda con AJAX desde el servidor:</p>
+<form name="form1">
+    <p><select name="mnuPrimario" id="mnuPrimario" size="1" onchange="cargaItems(this.value);">
+    <option value=""></option>
+    <option value="revistas">Revistas</option>
+    <option value="blogs">Blogs</option>
+    <option value="empresas">Empresas</option>
+    <option value="libros">Libros</option>
+    </select><select name="mnuSecundario" id="mnuSecundario" size="1">
+    <option value="">[Sin elementos]</option>
+    </select></p>
+</form>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejemplo del uso de la API de IMDB con JSONP</title>
+	
+	<link type="text/css" rel="stylesheet" href="IMDBInfo.css"/>
+	
+    <script type="text/javascript" src="EventHandlerHelper.js"></script>
+    <script type="text/javascript" src="JSONPHelper.js"></script>
+    <script type="text/javascript" src="IMDBInfo.js"></script>
+</head>
+<body>
+	<div id="contenedor">
+		<div id="cabecera"></div>
+		<input type="text" id="titPelicula" value="Casablanca" />
+		<input type="button" id="cmdGetInfo" value="Buscar películas" />
+		<div id="Resultados">
+			<div id="resBusqueda">
+				&nbsp;
+			</div>
+			<div id="detalle">
+				<div id="infoPeli">
+					<h1 id="Title"></h1>
+					<p id="Plot"></p>
+					<h2>Ficha Técnica:</h2>
+					<span class="encabezado">Tipo: </span><span id="Type"></span><br/>
+					<span class="encabezado">Fecha de lanzamiento: </span><span id="Released"></span><br/>
+					<span class="encabezado">Duración: </span><span id="RunTime"></span><br/>
+					<span class="encabezado">Director: </span><span id="Director"></span><br/>
+					<span class="encabezado">Reparto: </span><span id="Actors"></span><br/>
+					<span class="encabezado">Pais: </span><span id="Country"></span><br/>
+					<span class="encabezado">Premios: </span><span id="Awards"></span><br/>
+				</div>
+				<div id="caratula"><img id="imgCaratula"/></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
