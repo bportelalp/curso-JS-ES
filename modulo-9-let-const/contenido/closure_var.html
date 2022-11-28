@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demo closures var</title>
+		<style type="text/css">
+			div {
+				border:1px solid #001fa6
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Closures usando var</h1>
+		<hr>
+		<div id="id1">Div id1  - Click me</div>
+		<div id="id2">Div id2  - Click me</div>
+		<div id="id3">Div id3  - Click me</div>
+		<div id="id4">Div id4  - Click me</div>
+		<div id="id5">Div id5  - Click me</div>
+		<div id="id6">Div id6  - Click me</div>
+		<script>
+			for (var i = 1; i<=6; i++) {
+				document.getElementById("id" + i).addEventListener("click", 
+					function() {
+						console.log('click -> ' + i);
+					}
+				, false);
+			}		
+		</script>
+	</body>
+</html>
