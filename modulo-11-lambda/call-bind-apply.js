@@ -57,5 +57,3 @@ console.log('Valor en objCall -->', objCall.property);
 console.log('Valor en objApply -->', objApply.property);
 console.log('Valor en objBind -->', objBind.property); //Porque esto deberia ser 600 segun el video
 console.log('Valor en objNotBinded -->', objNotBinded.property); // y esto undefined
-
-
