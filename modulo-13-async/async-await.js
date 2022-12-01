@@ -7,7 +7,7 @@ function waitPromise(sec) {
 }
 
 console.log('Inicio espera');
-
+d
 // Sin await, esta llamada termina despyes del console log fin
 // waitPromise(500).then(() => {
 //     console.log('Espera terminada');
