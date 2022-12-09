@@ -1,24 +1,29 @@
-let repo = {
-    _data: [],
-    add(value) {
-        this._data.push(value)
-    },
+/**
+ * Función anónima autoejecutable con RevealingModulePattern para ocultar _data del objeto
+ */
+const repo = (() => {
+    let _data = [];
 
-    [Symbol.iterator]() {
-        let idx = 0;
-        return {
-            next: () => {
-                let current = this._data[idx];
-                idx++;
-                return {
-                    value: current,
-                    done: idx > this._data.length
+    let repo = {
+        add(value) {
+            _data.push(value)
+        },
+        [Symbol.iterator]() {
+            let idx = 0;
+            return {
+                next: () => {
+                    let current = _data[idx];
+                    idx++;
+                    return {
+                        value: current,
+                        done: idx > _data.length
+                    }
                 }
             }
         }
     }
-}
-
+    return repo;
+})();
 repo.add(10)
 repo.add(30);
 
