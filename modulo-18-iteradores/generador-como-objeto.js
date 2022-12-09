@@ -17,3 +17,6 @@ let lostExtended = function*(){
 for (const value of lostExtended()) {
     console.log('Valor:', value);
 }
+
+var arrLost = [...lostExtended()]
+console.log('Se puede usar spread con los iteradores:', arrLost);
