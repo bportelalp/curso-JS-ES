@@ -20,8 +20,7 @@ class Uri {
             document.location.href = this.rawUri;
         }
         else {// para Node
-            fetch(this.rawUri)
-                .then(result => console.log('\nFinalizado llamada al metodo navigate:', result.status));
+            console.log('Finalizado llamada al metodo navigate');
         }
     }
 
@@ -30,27 +29,27 @@ class Uri {
     get address() { return this._address }
 
     set address(addr) {
-        if(typeof(addr) == 'string' && addr !== ''){
+        if (typeof (addr) == 'string' && addr !== '') {
             this._address = addr;
             this.rawUri = this._protocol + '://' + this._address;
         }
     }
     set protocol(protocol) {
-        if(typeof(addr) == 'string' && protocol !== ''){
+        if (typeof (addr) == 'string' && protocol !== '') {
             this._protocol = protocol;
             this.rawUri = this._protocol + '://' + this._address;
         }
     }
 }
 
-let url = new Uri('http://www.google.es');
+const url = new Uri('http://www.google.es');
 
 console.log('Variable url:', url);
 console.log('Tipo de url:', typeof (url));
 console.log('Es una instancia de Uri?:', url instanceof Uri);
 
 // Poder generar Uri mediante un objeto
-let url2 = new Uri({
+const url2 = new Uri({
     protocol: 'http',
     address: 'www.google.es'
 })
@@ -68,3 +67,17 @@ console.log('Propiedad address:', url.address);
 
 url.address = 'www.campusmvp.es';
 console.log('Cambiada la propiedad address:', url);
+
+class HttpUri extends Uri {
+    constructor(address) {
+        super({ protocol: 'http', address }); // invocación al ctor de la clase base
+    }
+}
+
+console.log('\nHERENCIA');
+const campusmvp = new HttpUri('www.campusmvp.es');
+console.log('Objeto de clase que hereda de Uri;', campusmvp);
+console.log('Es una instancia de Uri?:', campusmvp instanceof Uri); // porque está en la cadena de prototipos
+console.log('Es una instancia de HttpUri?:', campusmvp instanceof HttpUri);
+console.log('campusmvp.__proto__ === HttpUri.prototype?:', campusmvp.__proto__ === HttpUri.prototype);
+console.log('campusmvp.__proto__.__proto__ === Uri.prototype?:', campusmvp.__proto__.__proto__ === Uri.prototype);
