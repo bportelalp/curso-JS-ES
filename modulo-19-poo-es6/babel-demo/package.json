@@ -2,10 +2,10 @@
   "name": "babel-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "clases.js",
+  "main": "lib-es5/clases.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel --presets es2015 js -d lib-es5"
+    "build": "babel --presets es2015 js -d lib-es5 --source-maps"
   },
   "author": "",
   "license": "ISC",
