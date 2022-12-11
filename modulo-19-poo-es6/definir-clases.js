@@ -1,46 +1,64 @@
-class Uri {
-    /*JS no tiene el concepto de sobrecarga de funciones, pero se puede simular con la desestructuracion */
-    constructor({ protocol, address }) {
-        // Usamos arguments para saber si el tipo del argumento es una cadena, así ya no componemos desde el objeto
-        if (typeof (arguments[0]) === 'string') {
-            this.rawUri = arguments[0];
-            const id = this.rawUri.indexOf("://");
-            this._address = this.rawUri.substring(id + 3);
-            this._protocol = this.rawUri.substring(0, id);
+const { HttpUri, Uri } = (function () {
+    let _privates = new WeakMap();
+    class Uri {
+        /*JS no tiene el concepto de sobrecarga de funciones, pero se puede simular con la desestructuracion */
+        constructor({ protocol, address }) {
+            _privates.set(this, {})
+            const pr = _privates.get(this);
+            // Usamos arguments para saber si el tipo del argumento es una cadena, así ya no componemos desde el objeto
+            if (typeof (arguments[0]) === 'string') {
+                this.rawUri = arguments[0];
+                const id = this.rawUri.indexOf("://");
+
+                pr._address = this.rawUri.substring(id + 3);
+                pr._protocol = this.rawUri.substring(0, id);
+            }
+            else {
+                this.rawUri = protocol + '://' + address;
+                pr._protocol = protocol;
+                pr._address = address;
+            }
         }
-        else {
-            this.rawUri = protocol + '://' + address;
-            this._protocol = protocol;
-            this._address = address;
+
+        navigate() {
+            if (typeof document !== 'undefined') { // para navegador
+                document.location.href = this.rawUri;
+            }
+            else {// para Node
+                console.log('Finalizado llamada al metodo navigate');
+            }
+        }
+
+        get protocol() { return _privates.get(this)._protocol }
+
+        get address() { return _privates.get(this)._address }
+
+        set address(addr) {
+            if (typeof (addr) == 'string' && addr !== '') {
+                const pr = _privates.get(this);
+                pr._address = addr;
+                this.rawUri = pr._protocol + '://' + pr._address;
+            }
+        }
+        set protocol(protocol) {
+            if (typeof (addr) == 'string' && protocol !== '') {
+                const pr = _privates.get(this);
+                pr._protocol = protocol;
+                this.rawUri = pr._protocol + '://' + pr._address;
+            }
         }
     }
 
-    navigate() {
-        if (typeof document !== 'undefined') { // para navegador
-            document.location.href = this.rawUri;
-        }
-        else {// para Node
-            console.log('Finalizado llamada al metodo navigate');
+    class HttpUri extends Uri {
+        constructor(address) {
+            super({ protocol: 'http', address }); // invocación al ctor de la clase base
         }
     }
 
-    get protocol() { return this._protocol }
+    return { HttpUri, Uri }
+})();
 
-    get address() { return this._address }
 
-    set address(addr) {
-        if (typeof (addr) == 'string' && addr !== '') {
-            this._address = addr;
-            this.rawUri = this._protocol + '://' + this._address;
-        }
-    }
-    set protocol(protocol) {
-        if (typeof (addr) == 'string' && protocol !== '') {
-            this._protocol = protocol;
-            this.rawUri = this._protocol + '://' + this._address;
-        }
-    }
-}
 
 const url = new Uri('http://www.google.es');
 
@@ -68,11 +86,7 @@ console.log('Propiedad address:', url.address);
 url.address = 'www.campusmvp.es';
 console.log('Cambiada la propiedad address:', url);
 
-class HttpUri extends Uri {
-    constructor(address) {
-        super({ protocol: 'http', address }); // invocación al ctor de la clase base
-    }
-}
+
 
 console.log('\nHERENCIA');
 const campusmvp = new HttpUri('www.campusmvp.es');
