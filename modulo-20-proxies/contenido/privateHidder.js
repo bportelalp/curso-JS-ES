@@ -7,6 +7,11 @@ var obj = {
   }
 }
 
+/**
+ * Recibe un objeto y devuelve un proxy que oculta los privados del objeto
+ * @param {Object} obj 
+ * @returns 
+ */
 const hidePrivates = function(obj) {
   const handler = {
     get (target, key, receiver) {
