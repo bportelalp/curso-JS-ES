@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        <title>Demo RMP</title>
-        <script src="bower_components/system.js/dist/system.js"></script>
-        <script>
-            System.import('./main.js');
-        </script>
-    </head>
-    <body>
-        <h1>Demo RMP</h1>
-    </body>
+
+<head>
+
+    <title>Demo RMP</title>
+    <!--Esto es la importación del cargador de módulos, como un bundle browserify ejecutar el script build con npm-->
+    <script src="bower_components/system.js/dist/system.js"></script>
+    <!--Esta es la carga del módulo main, que a su vez cargará los otros-->
+    <script>
+        System.import('./main.js');
+    </script>
+</head>
+
+<body>
+    <h1>Demo RMP</h1>
+</body>
+
 </html>

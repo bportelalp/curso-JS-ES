@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "installSystemJS": "bower install system.js"
+  },
+  "dependencies": {
+    "bower": "^1.8.14"
+  }
+}
